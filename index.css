@@ -6,3 +6,15 @@
 body
 {
 }
+
+table
+{
+	width: 100%;
+ 	border-collapse: collapse;
+}
+
+td, th
+{
+	height: 20px;
+ 	border: 1px solid black;
+}
