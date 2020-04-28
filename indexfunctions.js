@@ -28,14 +28,14 @@ function createFullTable(parent, num_rows, num_cols)
 			cell.classList.add(unselected_class);			// instantiate cell as empty
 
 			cell.onmousedown = function(){					// Change state on mouse click
-				swapSelectedClass(this)
+				swapSelectedNode(this)
 			};
 			cell.onmouseover = function()					// Change state on mouse hover AND mouse drag
 			{
 				this.classList.toggle(mouse_hover_class);	// Change color on mouse hover
 				if(mouse_down == true)						// Change color on mouse drag
 				{
-					swapSelectedClass(this);
+					swapSelectedNode(this);
 				}
 			};
 			cell.onmouseout = function()					// Revert color on mouse out
@@ -47,7 +47,7 @@ function createFullTable(parent, num_rows, num_cols)
 }
 
 // Swap to opposing selected or unselected class
-function swapSelectedClass(cell)
+function swapSelectedNode(cell)
 	{
 		if(cell.classList.contains(selected_class)){
 			cell.classList.remove(selected_class)
