@@ -29,3 +29,18 @@ td, th
 {
  	border: 1px solid black;
 }
+
+.empty
+{
+	background-color: none;
+}
+
+.hover
+{
+	background-color: lightblue;
+}
+
+.selected
+{
+	background-color: skyblue;
+}
