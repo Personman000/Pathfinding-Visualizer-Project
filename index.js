@@ -1,7 +1,7 @@
 window.onload = function()
 {
 	var table_container = document.getElementById("table_container");
-	var cell_size = 20;
+	var cell_size = 30;
 
 	var container_height = table_container.clientHeight;
 	var container_width = table_container.clientWidth;
