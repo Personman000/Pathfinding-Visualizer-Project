@@ -49,5 +49,5 @@ function aStar(start_node, end_node)
 
 function distance(from_node, to_node)
 {
-	return Math.sqrt(Math.pow(to_node.row - from_node.row, 2) + Math.pow(to_node.column - from_node.column, 2));
+	return Math.abs(from_node.row - to_node.row) + Math.abs(from_node.column - to_node.column);
 }
