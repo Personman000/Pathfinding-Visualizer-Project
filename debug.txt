@@ -1,0 +1,33 @@
+	//DEBUG, index.js, swap the state of each neighbor node
+	var start_nodes = ["14 23", "12 23", "10 23"]
+	var neighbor_nodes = [];
+
+	for (var i = 0; i < start_nodes.length; i++)
+	{
+		start_node = document.getElementById(start_nodes[i]);
+		swapSelectedNode(start_node);
+		neighbor_nodes.push(start_node)
+	}
+
+	for (var i = 0; i < 500; i++)
+	{
+		(function (i)
+		{
+			setTimeout(function ()
+			{
+				console.log(neighbor_nodes);
+				while(neighbor_nodes[0].className.includes("unselected"))
+				{
+					neighbor_nodes.splice(0, 1);
+				}
+				curr_neighbor_node = neighbor_nodes[0];
+				swapSelectedNode(curr_neighbor_node);
+				curr_neighbor_node_neighbors = getNeighbors(curr_neighbor_node);
+				for(var j = 0; j < curr_neighbor_node_neighbors.length; j++)
+				{
+					swapSelectedNode(curr_neighbor_node_neighbors[j]);
+				}
+				neighbor_nodes = neighbor_nodes.concat(curr_neighbor_node_neighbors);
+			}, 50*i);
+		})(i);
+	};

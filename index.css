@@ -35,18 +35,19 @@ td
 	animation-fill-mode: backwards;
 }
 
-.unselected
+
+td:hover
+{
+	background-color: lightgrey;
+}
+
+.empty
 {
 	background-color: white;
 	animation-name: unselectAnimation;
 }
 
-.hover
-{
-	background-color: lightgrey;
-}
-
-.selected
+.wall
 {
 	background-color: skyblue;
 	animation-name: selectAnimation;

@@ -1,6 +1,5 @@
-unselected_class = "unselected";
-mouse_hover_class = "hover";
-selected_class = "selected";
+unselected_class = "empty";
+selected_class = "wall";
 
 mouse_down = false;
 document.onmousedown = function(){mouse_down = true}
@@ -32,15 +31,10 @@ function createFullTable(parent, num_rows, num_cols)
 			};
 			cell.onmouseover = function()					// Change state on mouse hover AND mouse drag
 			{
-				this.classList.toggle(mouse_hover_class);	// Change color on mouse hover
 				if(mouse_down == true)						// Change color on mouse drag
 				{
 					swapSelectedNode(this);
 				}
-			};
-			cell.onmouseout = function()					// Revert color on mouse out
-			{
-				this.classList.toggle(mouse_hover_class)
 			};
 		}
 	}
@@ -48,12 +42,12 @@ function createFullTable(parent, num_rows, num_cols)
 
 // Swap to opposing selected or unselected class
 function swapSelectedNode(cell)
-	{
-		if(cell.classList.contains(selected_class)){
-			cell.classList.remove(selected_class)
-			cell.classList.add(unselected_class);
-		}else{
-			cell.classList.remove(unselected_class)
-			cell.classList.add(selected_class);
-		}
+{
+	if(cell.classList.contains(selected_class)){
+		cell.classList.remove(selected_class)
+		cell.classList.add(unselected_class);
+	}else{
+		cell.classList.remove(unselected_class)
+		cell.classList.add(selected_class);
 	}
+}
