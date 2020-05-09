@@ -18,7 +18,7 @@ function createNodeFromElement(cell_element)
 			cell: cell_element,
 			state: cell_element.className,
 			parent: null,
-			weight: Infinity,
+			local: Infinity,
 			heuristic: Infinity,
 			getNeighborNodeByIndexJump: function(row_jump, col_jump)
 				{
