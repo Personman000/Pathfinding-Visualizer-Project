@@ -1,6 +1,7 @@
 unselected_class = "empty";
 selected_class = "wall";
 path_class = "path";
+visited_class = "visited";
 
 mouse_down = false;
 document.onmousedown = function(){mouse_down = true}

@@ -16,7 +16,6 @@ function createNodeFromElement(cell_element)
 			row: row_num,
 			column: col_num,
 			cell: cell_element,
-			state: cell_element.className,
 			parent: null,
 			local: Infinity,
 			heuristic: Infinity,

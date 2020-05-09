@@ -70,6 +70,11 @@ td:hover
 	background-color: yellow;
 }
 
+.visited
+{
+	background-color: purple;
+}
+
 @keyframes unselectAnimation
 {
 	from {transform: scale(1);}
