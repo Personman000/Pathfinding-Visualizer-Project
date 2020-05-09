@@ -30,12 +30,14 @@ function aStar(start_node, end_node)
 					curr_node_neighbor.local = curr_node.local + 1;
 					curr_node_neighbor.heuristic = curr_node_neighbor.local + distance(curr_node_neighbor, end_node);
 					curr_node_neighbor.parent = curr_node;
+
+					// If node hasn't been visited, add it to visited list
+					if (!visited.includes(curr_node_neighbor))
+					{
+						visited.push(curr_node_neighbor);
+					}
 				}
-				// If node hasn't been visited, add it to visited list
-				if (!visited.includes(curr_node_neighbor))
-				{
-					visited.push(curr_node_neighbor);
-				}
+
 			}
 		}
 		visited.splice(0, 1);
