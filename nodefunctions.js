@@ -16,6 +16,8 @@ function createNodeFromElement(cell_element)
 			cell: cell_element,
 			state: cell_element.className,
 			parent: null,
+			weight: Infinity,
+			heuristic: Infinity,
 			getNeighborNodeByIndexJump: function(row_jump, col_jump)
 				{
 					return createNodeFromPosition(this.row + row_jump, this.column + col_jump);
