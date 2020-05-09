@@ -7,9 +7,11 @@ function createNodeFromElement(cell_element)
 	var node_search_index = node_list.findIndex((node) => (node.row == row_num && node.column == col_num));
 	if (node_search_index != -1)
 	{
+		// If node was already created (it will be in node_list), return it
 		return node_list[node_search_index];
 	}else
 	{
+		// If node was not created, create and return it
 		var node = {
 			row: row_num,
 			column: col_num,
@@ -56,5 +58,13 @@ function createNodeFromElement(cell_element)
 function createNodeFromPosition(row_num, col_num)
 {
 	var cell_element = document.getElementById(row_num + " " + col_num);
-	return createNodeFromElement(cell_element);
+
+	if(cell_element)
+	{
+		return createNodeFromElement(cell_element);
+	}else
+	{
+		// Return null if cell doesn't exist (for negative and overflowing cell indexes)
+		return null;
+	}
 }
