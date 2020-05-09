@@ -3,43 +3,43 @@ function getNeighborByIndexJump(row, col, row_jump, col_jump)
 	return document.getElementById((row + row_jump) + " " + (col + col_jump));
 }
 
-function getNodeVals(node)
+function getCellVals(cell)
 {
-	var node_vals = node.id.split(" ");
-	var node_row = parseInt(node_vals[0]);
-	var node_col = parseInt(node_vals[1])
-	return [node_row, node_col];
+	var cell_vals = cell.id.split(" ");
+	var cell_row = parseInt(cell_vals[0]);
+	var cell_col = parseInt(cell_vals[1])
+	return [cell_row, cell_col];
 }
 
-function getRightNode(node)
+function getRightCell(cell)
 {
-	var node_vals = getNodeVals(node);
-	return getNeighborByIndexJump(node_vals[0], node_vals[1], 0, 1);	
+	var cell_vals = getCellVals(cell);
+	return getNeighborByIndexJump(cell_vals[0], cell_vals[1], 0, 1);	
 }
 
-function getLeftNode(node)
+function getLeftCell(cell)
 {
-	var node_vals = getNodeVals(node);
-	return getNeighborByIndexJump(node_vals[0], node_vals[1], 0, -1);	
+	var cell_vals = getCellVals(cell);
+	return getNeighborByIndexJump(cell_vals[0], cell_vals[1], 0, -1);	
 }
 
-function getUpNode(node)
+function getUpCell(cell)
 {
-	var node_vals = getNodeVals(node);
-	return getNeighborByIndexJump(node_vals[0], node_vals[1], -1, 0);	
+	var cell_vals = getCellVals(cell);
+	return getNeighborByIndexJump(cell_vals[0], cell_vals[1], -1, 0);	
 }
 
-function getDownNode(node)
+function getDownCell(cell)
 {
-	var node_vals = getNodeVals(node);
-	return getNeighborByIndexJump(node_vals[0], node_vals[1], 1, 0);	
+	var cell_vals = getCellVals(cell);
+	return getNeighborByIndexJump(cell_vals[0], cell_vals[1], 1, 0);	
 }
 
-function getNeighbors(node)
+function getNeighbors(cell)
 {
-	var up_node = getUpNode(node);
-	var right_node = getRightNode(node);
-	var down_node = getDownNode(node);
-	var left_node = getLeftNode(node);
-	return [up_node, right_node, down_node, left_node];
+	var up_cell = getUpCell(cell);
+	var right_cell = getRightCell(cell);
+	var down_cell = getDownCell(cell);
+	var left_cell = getLeftCell(cell);
+	return [up_cell, right_cell, down_cell, left_cell];
 }

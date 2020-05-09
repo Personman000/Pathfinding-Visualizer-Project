@@ -1,5 +1,6 @@
 window.onload = function()
 {
+	// Create table with num of cells according to window size
 	var table_container = document.getElementById("table_container");
 	var cell_size = 30;
 
