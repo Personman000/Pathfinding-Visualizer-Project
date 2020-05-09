@@ -22,7 +22,7 @@ function aStar(start_node, end_node)
 			curr_node_neighbor = curr_node_neighbors[i];
 
 			// Only operate on neighbor node if it is not null (from overflow positions)
-			if(curr_node_neighbor)
+			if(curr_node_neighbor && curr_node_neighbor.cell.className != "wall")
 			{
 				// If the distance to the neighbor node is better than its current one, update the parent of the neighbor node to the current node
 				if(curr_node.local + 1 < curr_node_neighbor.local)

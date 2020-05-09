@@ -43,6 +43,10 @@ td
 	animation-fill-mode: backwards;
 }
 
+td:hover
+{
+	background-color: lightgrey;
+}
 
 .empty
 {
@@ -56,14 +60,14 @@ td
 	animation-name: selectAnimation;
 }
 
-.empty:hover
-{
-	background-color: lightgrey;
-}
-
 .wall:hover
 {
 	background-color: skyblue;
+}
+
+.path
+{
+	background-color: yellow;
 }
 
 @keyframes unselectAnimation

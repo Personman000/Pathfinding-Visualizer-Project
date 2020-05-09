@@ -1,5 +1,6 @@
 unselected_class = "empty";
 selected_class = "wall";
+path_class = "path";
 
 mouse_down = false;
 document.onmousedown = function(){mouse_down = true}
@@ -44,10 +45,9 @@ function createFullTable(parent, num_rows, num_cols)
 function swapSelectedNode(cell)
 {
 	if(cell.classList.contains(selected_class)){
-		cell.classList.remove(selected_class)
-		cell.classList.add(unselected_class);
+		cell.className = unselected_class;
 	}else{
 		cell.classList.remove(unselected_class)
-		cell.classList.add(selected_class);
+		cell.className = selected_class;
 	}
 }
