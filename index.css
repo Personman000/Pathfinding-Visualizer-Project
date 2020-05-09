@@ -19,6 +19,14 @@ table, div
 	height: 100%;
  	border-collapse: collapse;
  	background-color: lightgrey;
+ 	animation-name: fadeInAnimation;
+ 	animation-duration: 2s;
+}
+
+@keyframes fadeInAnimation
+{
+	from {background-color: white;}
+	to {background-color: lightgrey;}
 }
 
 h1
@@ -36,11 +44,6 @@ td
 }
 
 
-td:hover
-{
-	background-color: lightgrey;
-}
-
 .empty
 {
 	background-color: white;
@@ -49,8 +52,18 @@ td:hover
 
 .wall
 {
-	background-color: skyblue;
+	background-color: lightblue;
 	animation-name: selectAnimation;
+}
+
+.empty:hover
+{
+	background-color: lightgrey;
+}
+
+.wall:hover
+{
+	background-color: skyblue;
 }
 
 @keyframes unselectAnimation
