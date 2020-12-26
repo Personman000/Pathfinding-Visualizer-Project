@@ -12,6 +12,7 @@ function aStar(start_node, end_node)
 		var curr_node = visited[0];
 		if(curr_node === end_node)
 		{
+			history.push(curr_node);
 			return history;
 		}
 

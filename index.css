@@ -43,15 +43,15 @@ td
 	animation-fill-mode: backwards;
 }
 
-td:hover
-{
-	background-color: lightgrey;
-}
-
 .empty
 {
 	background-color: white;
 	animation-name: unselectAnimation;
+}
+
+.empty:hover
+{
+	background-color: lightgrey;
 }
 
 .wall
@@ -73,6 +73,26 @@ td:hover
 .visited
 {
 	background-color: purple;
+}
+
+.start
+{
+	background-color: lightgreen;
+}
+
+.start:hover
+{
+	background-color: green;
+}
+
+.end
+{
+	background-color: pink;
+}
+
+.end:hover
+{
+	background-color: red;
 }
 
 @keyframes unselectAnimation

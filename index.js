@@ -17,6 +17,10 @@ window.onload = function()
 				"\nNum cols:", num_cols);
 
 	createFullTable(table_container, num_rows, num_cols);
+
+	// Initial start and end nodes
+	document.getElementById("0 0").classList.add(start_class);
+	document.getElementById(`${num_rows} ${num_cols}`).classList.add(end_class);
 }
 
 // DEBUG: Run a-star when spacebar is released
@@ -38,12 +42,14 @@ window.onkeyup = function(e)
 			}
 		}
 
-		// DEBUG: Hardcode start and end nodes
-		var test_start_node = createNodeFromPosition(2, 2);
-		var test_end_node = createNodeFromPosition(20, 20);
+		var start_cell = document.getElementsByClassName(start_class)[0];
+		var end_cell = document.getElementsByClassName(end_class)[0];
+
+		var start_node = createNodeFromElement(start_cell);
+		var end_node = createNodeFromElement(end_cell);
 
 		// Run a-star
-		a_star_history = aStar(test_start_node, test_end_node);
+		a_star_history = aStar(start_node, end_node);
 		
 		// Color visited
 		var speed = 5;
@@ -53,14 +59,15 @@ window.onkeyup = function(e)
 			{
 				setTimeout(function ()
 				{
-					a_star_history[i].cell.className = visited_class;
+					a_star_history[i].cell.classList.remove(unselected_class);
+					a_star_history[i].cell.classList.add(visited_class);
 				}, speed*i);
 			})(i);
 		}
 
 		// Get found path
 		var path = [];
-		var curr_node = test_end_node;
+		var curr_node = end_node;
 		while(curr_node)	
 		{
 			path.push(curr_node);
@@ -75,7 +82,8 @@ window.onkeyup = function(e)
 			{
 				setTimeout(function ()
 				{
-					path[j].cell.className = path_class;
+					path[j].cell.classList.remove(visited_class);
+					path[j].cell.classList.add(path_class);
 				}, speed*j + speed*i);	// Make sure to color path nodes *after* visited nodes
 			})(j);
 		}
