@@ -21,71 +21,71 @@ window.onload = function()
 	// Initial start and end nodes
 	document.getElementById("0 0").classList.add(start_class);
 	document.getElementById(`${num_rows} ${num_cols}`).classList.add(end_class);
+
+	// Initialize run button
+	document.getElementById("run_button").addEventListener("click", run);
 }
 
 // DEBUG: Run a-star when spacebar is released
 a_star_history = [];
-window.onkeyup = function(e)
+function run(e)
 {
-	if(e.keyCode == 32)
+	// Start from scratch
+	node_list = [];
+	
+	// Reset any colored nodes from previous paths
+	console.log(a_star_history);
+	for (var i = 0; i < a_star_history.length; i++)
 	{
-		// Start from scratch
-		node_list = [];
-		
-		// Reset any colored nodes from previous paths
-		console.log(a_star_history);
-		for (var i = 0; i < a_star_history.length; i++)
+		if(a_star_history[i].cell.className == path_class || a_star_history[i].cell.className == visited_class)
 		{
-			if(a_star_history[i].cell.className == path_class || a_star_history[i].cell.className == visited_class)
+			a_star_history[i].cell.className = unselected_class;
+		}
+	}
+
+	var start_cell = document.getElementsByClassName(start_class)[0];
+	var end_cell = document.getElementsByClassName(end_class)[0];
+
+	var start_node = createNodeFromElement(start_cell);
+	var end_node = createNodeFromElement(end_cell);
+
+	// Run a-star
+	a_star_history = aStar(start_node, end_node);
+	
+	// Color visited
+	var speed = 5;
+	for (var i = 0; i < a_star_history.length; i++)
+	{
+		(function (i)
+		{
+			setTimeout(function ()
 			{
-				a_star_history[i].cell.className = unselected_class;
-			}
-		}
+				a_star_history[i].cell.classList.remove(unselected_class);
+				a_star_history[i].cell.classList.add(visited_class);
+			}, speed*i);
+		})(i);
+	}
 
-		var start_cell = document.getElementsByClassName(start_class)[0];
-		var end_cell = document.getElementsByClassName(end_class)[0];
-
-		var start_node = createNodeFromElement(start_cell);
-		var end_node = createNodeFromElement(end_cell);
-
-		// Run a-star
-		a_star_history = aStar(start_node, end_node);
-		
-		// Color visited
-		var speed = 5;
-		for (var i = 0; i < a_star_history.length; i++)
+	// Get found path
+	var path = [];
+	var curr_node = end_node;
+	while(curr_node)	
+	{
+		path.push(curr_node);
+		curr_node = curr_node.parent;
+	}
+	// Reverse to get from start-to-end rather than end-to-start
+	path = path.reverse();
+	// Color path nodes
+	for (var j = 0; j < path.length; j++)
+	{
+		(function (j)
 		{
-			(function (i)
+			setTimeout(function ()
 			{
-				setTimeout(function ()
-				{
-					a_star_history[i].cell.classList.remove(unselected_class);
-					a_star_history[i].cell.classList.add(visited_class);
-				}, speed*i);
-			})(i);
-		}
-
-		// Get found path
-		var path = [];
-		var curr_node = end_node;
-		while(curr_node)	
-		{
-			path.push(curr_node);
-			curr_node = curr_node.parent;
-		}
-		// Reverse to get from start-to-end rather than end-to-start
-		path = path.reverse();
-		// Color path nodes
-		for (var j = 0; j < path.length; j++)
-		{
-			(function (j)
-			{
-				setTimeout(function ()
-				{
-					path[j].cell.classList.remove(visited_class);
-					path[j].cell.classList.add(path_class);
-				}, speed*j + speed*i);	// Make sure to color path nodes *after* visited nodes
-			})(j);
-		}
+				path[j].cell.classList.remove(visited_class);
+				path[j].cell.classList.add(path_class);
+			}, speed*j + speed*i);	// Make sure to color path nodes *after* visited nodes
+		})(j);
 	}
 }
