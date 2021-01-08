@@ -104,7 +104,7 @@ td
 .empty
 {
 	background-color: white;
-	animation-name: unselectAnimation;
+	transition: none;
 }
 
 .empty:hover
