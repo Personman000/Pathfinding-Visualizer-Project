@@ -45,7 +45,7 @@ function createNodeFromElement(cell_element)
 					var right_node = this.getRightNode();
 					var down_node = this.getDownNode();
 					var left_node = this.getLeftNode();
-					return [up_node, right_node, down_node, left_node];
+					return [up_node, right_node, down_node, left_node].filter(Boolean);
 				}
 		};
 		node_list.push(node);

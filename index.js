@@ -27,19 +27,18 @@ window.onload = function()
 }
 
 // DEBUG: Run a-star when spacebar is released
-a_star_history = [];
+pathfind_history = [];
 function run(e)
 {
 	// Start from scratch
 	node_list = [];
 	
 	// Reset any colored nodes from previous paths
-	console.log(a_star_history);
-	for (var i = 0; i < a_star_history.length; i++)
+	for (var i = 0; i < pathfind_history.length; i++)
 	{
-		if(a_star_history[i].cell.className == path_class || a_star_history[i].cell.className == visited_class)
+		if(pathfind_history[i].cell.className == path_class || pathfind_history[i].cell.className == visited_class)
 		{
-			a_star_history[i].cell.className = unselected_class;
+			pathfind_history[i].cell.className = unselected_class;
 		}
 	}
 
@@ -49,22 +48,33 @@ function run(e)
 	var start_node = createNodeFromElement(start_cell);
 	var end_node = createNodeFromElement(end_cell);
 
-	// Run a-star
-	a_star_history = aStar(start_node, end_node);
+	// Run pathfinding
+	var pathfinding_function = document.getElementById("pathfinding_function").value;
+	if(pathfinding_function == "aStar"){
+		console.log("Running A-Star...");
+		pathfind_history = aStar(start_node, end_node);
+	}else if(pathfinding_function == "depthFirst"){
+		console.log("Running Depth-First...");
+		pathfind_history = depthFirst(start_node, end_node);
+	}else if(pathfinding_function == "breadthFirst"){
+		console.log("Running Breadth-First...");
+		pathfind_history = breadthFirst(start_node, end_node);
+	}
 	
 	// Color visited
 	var speed = 5;
-	for (var i = 0; i < a_star_history.length; i++)
+	for (var i = 0; i < pathfind_history.length; i++)
 	{
 		(function (i)
 		{
 			setTimeout(function ()
 			{
-				a_star_history[i].cell.classList.remove(unselected_class);
-				a_star_history[i].cell.classList.add(visited_class);
+				pathfind_history[i].cell.classList.remove(unselected_class);
+				pathfind_history[i].cell.classList.add(visited_class);
 			}, speed*i);
 		})(i);
 	}
+	//console.log(pathfind_history);
 
 	// Get found path
 	var path = [];
